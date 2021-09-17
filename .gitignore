@@ -117,3 +117,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# google vision json
+mulkiya-665c2f5e3369.json
