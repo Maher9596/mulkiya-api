@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Maher9596/mulkiya-api#readme",
   "dependencies": {
+    "@google-cloud/vision": "^2.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
