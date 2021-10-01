@@ -8,6 +8,7 @@ const vision = require('@google-cloud/vision');
 class OcrModel {
 
   labelDates(extractDescriptionTextArray) {
+    // To compare dates I convert the string and check for the max date
     if (extractDescriptionTextArray[0] > extractDescriptionTextArray[1]) {
       return {
         ExpiryDate: extractDescriptionTextArray[0],
