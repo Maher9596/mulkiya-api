@@ -1,17 +1,31 @@
 const express = require('express');
-// const googleVision = require("./packages/google-vision");
-const googleVision = require("../packages/google-vision/test");
+const googleVision = require("../packages/google-vision");
+const multer  = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+// const upload = multer({ dest: 'img/' })
 
 const router = express.Router();
 
 const path = require("path");
 
 router.get('/', (req, res) => {
-    // path.dirname
-    const imagePath = path.resolve("./img/1.jpeg");
-    console.log(imagePath);
-    googleVision.getTextFromFiles(1, [imagePath])
-  res.json(['😀', '😳', '🙄']);
+  res.status(200).json("Health ok")
 });
+
+router.post('/upload', upload.single('image'), async (req, res) => {
+  try {
+    const uploadedImageInBase64 = req.file.buffer.toString("base64");
+    const GoogleVision = new googleVision;
+    const dates = await GoogleVision.getTextFromImage(uploadedImageInBase64);
+    await res.status(200).json({
+      message: "Successfully uploaded image",
+      dates
+    });
+  } catch (error) {
+    console.log("Failed to upload image");
+    console.log("Error message", error);
+  }
+})
 
 module.exports = router;
