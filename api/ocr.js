@@ -1,9 +1,10 @@
 const express = require('express');
-const googleVision = require("../packages/google-vision");
 const multer  = require('multer');
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-// const upload = multer({ dest: 'img/' })
+
+const googleVision = require("../packages/google-vision");
 
 const router = express.Router();
 
